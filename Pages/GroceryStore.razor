@@ -1,0 +1,53 @@
+﻿@page "/grocerystore"
+
+<PageTitle>Grocery Store</PageTitle>
+
+<h1>Grocery Store</h1>
+<ul>
+    <li>Aisle 1</li>
+        <ul>
+            <li>Apples</li>
+            <li>Bananas</li>
+        </ul>
+    <li>Aisle 2</li>
+    <li>Aisle 3</li>
+    <li>Aisle 4</li>
+    <li>Aisle 5</li>
+    <li>Aisle 6</li>
+    <li>Aisle 7</li>
+    <li>Aisle 8</li>
+</ul>
+<ul>
+    @foreach (var grocerystore in grocerystores)
+    {
+        <li>@grocerystore.Title</li>
+
+           
+    }
+</ul>
+
+<input placeholder="Grocery Isle" @bind="newAisle"/>
+<button @onclick="AddIsle">Add Isle</button>
+
+@code {
+    private string? newAisle;
+    private List<GroceryStoreItem> grocerystores = new();
+
+
+    private void AddIsle()
+   {
+        if (!string.IsNullOrWhiteSpace(newAisle))
+        {
+            grocerystores.Add(new GroceryStoreItem { Title = newAisle });
+            newAisle = string.Empty;
+
+        }
+        
+
+    }
+
+}
+    
+
+
+
